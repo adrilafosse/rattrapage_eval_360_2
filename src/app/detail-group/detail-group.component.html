@@ -1,0 +1,23 @@
+<button (click)="generateStudentLinks()">Generate Student Links</button>
+
+<div *ngIf="showStudentLinks">
+  <div class="data-box">
+    <p><strong>Group Name:</strong> {{ groupData.group_name }}</p>
+    <p><strong>Group ID:</strong> {{ groupData.id }}</p>
+  </div>
+
+  <h3>Students</h3>
+  <ul class="student-list">
+    <li *ngFor="let student of groupData.students" class="student-item">
+      <p><strong>Name:</strong> {{ student.name }}</p>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+      <p><strong>ID:</strong> {{ student.id }}</p>
+      <p><strong>Lastname:</strong> {{ student.lastname }}</p>
+      <a *ngIf="student.showLink" [routerLink]="student.uniqueLink">View Notation</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!showStudentLinks">
+  <p>Error fetching group data.</p>
+</div>

@@ -1,0 +1,11 @@
+<!-- accueil.component.html -->
+
+<div>
+  <input type="text" [(ngModel)]="projectName" placeholder="Nom du projet">
+  <button (click)="onCreateProject()">Créer le projet</button>
+</div>
+<ul>
+  <li *ngFor="let project of projects">
+    <a [routerLink]="['/projet', project.id]">{{ project.name }}</a>
+  </li>
+</ul>

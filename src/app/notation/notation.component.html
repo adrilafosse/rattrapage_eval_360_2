@@ -1,0 +1,41 @@
+<div class="notation-container">
+  <h2>Notation Page</h2>
+  <p><strong>Project ID:</strong> {{ projectId }}</p>
+  <p><strong>Group ID:</strong> {{ groupId }}</p>
+  <p><strong>Student ID:</strong> {{ studentId }}</p>
+  <p><strong>Student Name:</strong> {{ studentName }}</p>
+  <p><strong>Student Lastname:</strong> {{ studentLastName }}</p>
+
+  <table class="notation-table">
+    <thead>
+      <tr>
+        <th></th> <!-- Empty cell in the top-left corner -->
+        <th class="wide-column">Résultats /Objectifs</th>
+        <th class="wide-column">Compétences</th>
+        <th class="wide-column">Implic. - Motivation Efficacité</th>
+        <th class="wide-column">Communication (Ecrite, Orale, Partage des informations)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of groupData.students">
+        <td>
+          {{ student.name }} {{ student.lastname }}
+        </td>
+        <td>
+          <input type="text" class="notation-input" [(ngModel)]="student.results" />
+        </td>
+        <td>
+          <input type="text" class="notation-input" [(ngModel)]="student.skills" />
+        </td>
+        <td>
+          <input type="text" class="notation-input" [(ngModel)]="student.motivation" />
+        </td>
+        <td>
+          <input type="text" class="notation-input" [(ngModel)]="student.communication" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="validateNotes()">Validate</button>
+  <!-- Add your notation form or content here -->
+</div>

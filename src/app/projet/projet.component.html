@@ -1,0 +1,12 @@
+<h1>Projet: {{ projectName }}</h1>
+
+<div *ngFor="let group of groups">
+  <h2>Groupe: {{ group.group_name }} </h2>
+  <div *ngFor="let student of group.students">
+    <p> {{ student.name }} {{ student.lastname }}</p>
+  </div>
+  <button (click)="navigateToDetailGroup(projectId, group.id)">Voir les détails du groupe</button>
+</div>
+
+<input type="file" (change)="onFileSelected($event)">
+<button (click)="onImportData()">Importer les données</button>
