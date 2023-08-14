@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private apiUrl = 'http://127.0.0.1:8080';
+  //private apiUrl = 'https://my-api-service-utezoxe3yq-ew.a.run.app';
 
   constructor(private http: HttpClient) { }
 
@@ -77,5 +78,11 @@ export class ApiService {
     const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}`;
     return this.http.get<any>(url);
   }
+  createNote(projectId: string, groupId: string, studentId: string, noteData: any): Observable<any> {
+    const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}/students/${studentId}/create_note`;
+    return this.http.post(url, noteData);
+  }
+
+
 
 }

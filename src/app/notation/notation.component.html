@@ -6,36 +6,104 @@
   <p><strong>Student Name:</strong> {{ studentName }}</p>
   <p><strong>Student Lastname:</strong> {{ studentLastName }}</p>
 
-  <table class="notation-table">
-    <thead>
-      <tr>
-        <th></th> <!-- Empty cell in the top-left corner -->
-        <th class="wide-column">Résultats /Objectifs</th>
-        <th class="wide-column">Compétences</th>
-        <th class="wide-column">Implic. - Motivation Efficacité</th>
-        <th class="wide-column">Communication (Ecrite, Orale, Partage des informations)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let student of groupData.students">
-        <td>
-          {{ student.name }} {{ student.lastname }}
-        </td>
-        <td>
-          <input type="text" class="notation-input" [(ngModel)]="student.results" />
-        </td>
-        <td>
-          <input type="text" class="notation-input" [(ngModel)]="student.skills" />
-        </td>
-        <td>
-          <input type="text" class="notation-input" [(ngModel)]="student.motivation" />
-        </td>
-        <td>
-          <input type="text" class="notation-input" [(ngModel)]="student.communication" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button (click)="validateNotes()">Validate</button>
-  <!-- Add your notation form or content here -->
+  <div *ngIf="!notesSubmitted">
+    <table class="notation-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="wide-column">Résultats /Objectifs</th>
+          <th class="wide-column">Compétences</th>
+          <th class="wide-column">Implic. - Motivation Efficacité</th>
+          <th class="wide-column">Communication (Ecrite, Orale, Partage des informations)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of groupData.students">
+          <td>
+            {{ student.name }} {{ student.lastname }}
+          </td>
+          <td>
+            <input
+              type="number"
+              class="notation-input"
+              [(ngModel)]="student.results"
+              (input)="checkFields()"
+              (change)="checkFields()"
+              min="0"
+              max="20"
+              required
+              [readonly]="notesSubmitted"
+            />
+            <div *ngIf="(student.results < 0 || student.results > 20)" class="error-message">
+              Note must be between 0 and 20
+            </div>
+          </td>
+          <td>
+            <input
+              type="number"
+              class="notation-input"
+              [(ngModel)]="student.skills"
+              (input)="checkFields()"
+              (change)="checkFields()"
+              min="0"
+              max="20"
+              required
+              [readonly]="notesSubmitted"
+            />
+            <div *ngIf="(student.skills < 0 || student.skills > 20)" class="error-message">
+              Note must be between 0 and 20
+            </div>
+          </td>
+          <td>
+            <input
+              type="number"
+              class="notation-input"
+              [(ngModel)]="student.motivation"
+              (input)="checkFields()"
+              (change)="checkFields()"
+              min="0"
+              max="20"
+              required
+              [readonly]="notesSubmitted"
+            />
+            <div *ngIf="(student.motivation < 0 || student.motivation > 20)" class="error-message">
+              Note must be between 0 and 20
+            </div>
+          </td>
+          <td>
+            <input
+              type="number"
+              class="notation-input"
+              [(ngModel)]="student.communication"
+              (input)="checkFields()"
+              (change)="checkFields()"
+              min="0"
+              max="20"
+              required
+              [readonly]="notesSubmitted"
+            />
+            <div *ngIf="(student.communication < 0 || student.communication > 20)" class="error-message">
+              Note must be between 0 and 20
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="validateNotes()" [disabled]="isButtonDisabled || notesSubmitted">Validate</button>
+    <div *ngIf="isButtonDisabled && !notesSubmitted" class="error-message">Please fill in all fields correctly.</div>
+  </div>
+
+  <!-- Display notes after they have been submitted -->
+  <div *ngIf="notesSubmitted" class="notes-submitted">
+    <h3>Notes Enregistrées:</h3>
+    <div *ngFor="let student of groupData.students">
+      <p>
+        {{ student.name }} {{ student.lastname }}:
+        Résultats: {{ student.results }}, Compétences: {{ student.skills }},
+        Implic. - Motivation Efficacité: {{ student.motivation }},
+        Communication: {{ student.communication }}
+      </p>
+    </div>
+  </div>
 </div>

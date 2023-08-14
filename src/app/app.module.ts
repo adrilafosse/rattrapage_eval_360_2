@@ -11,6 +11,7 @@ import { ProjetComponent } from './projet/projet.component';
 
 import { DetailGroupComponent } from './detail-group/detail-group.component';
 import { NotationComponent } from './notation/notation.component';
+import { DetailNotationComponent } from './detail-notation/detail-notation.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NotationComponent } from './notation/notation.component';
 
     DetailGroupComponent,
      NotationComponent,
+     DetailNotationComponent,
 
   ],
   imports: [
