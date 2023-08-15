@@ -20,6 +20,33 @@
   <button [routerLink]="['/detail-notation', groupData.id, projectId]">Détail Notation</button>
 
 </div>
+<button (click)="showJuryNoteForm = !showJuryNoteForm">Note du Jury</button>
+
+<div *ngIf="showJuryNoteForm">
+  <h3>Entrer les Prénoms des Membres du Jury</h3>
+  <input type="text" placeholder="Prénom" [(ngModel)]="juryFirstName">
+  <button (click)="addJuryMember()">Ajouter Prénom</button>
+
+  <ng-container *ngIf="juryMembers.length > 0">
+    <h3>Ajouter des Notes aux Membres du Jury</h3>
+    <ul>
+      <li *ngFor="let member of juryMembers; let i = index">
+        {{ member }}
+        <input type="number" [(ngModel)]="juryNotes[i]" placeholder="Note" [disabled]="notesLocked">
+      </li>
+    </ul>
+    <button (click)="lockNotes()">Valider</button>
+  </ng-container>
+</div>
+
+<div *ngIf="notesLocked">
+  <h3>Moyenne des Notes</h3>
+  <p>{{ calculateAverage() }}</p>
+</div>
+
+
+
+
 
 <div *ngIf="!showStudentLinks">
   <p>Error fetching group data.</p>

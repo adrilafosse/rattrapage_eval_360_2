@@ -14,6 +14,12 @@ export class DetailGroupComponent implements OnInit {
   groupData: any;
   showStudentLinks = false;
   currentDate: string = '';
+  showJuryNoteForm: boolean = false;
+  juryFirstName: string = '';
+  juryMembers: string[] = [];
+  juryNotes: (number | null)[] = [];
+  juryNote: number | null = null;
+  notesLocked: boolean = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
@@ -46,6 +52,51 @@ export class DetailGroupComponent implements OnInit {
     });
 
     this.showStudentLinks = true; // Show links after generating them
+  }
+  addJuryMember() {
+    if (this.juryFirstName.trim() !== '') {
+      this.juryMembers.push(this.juryFirstName);
+      this.juryNotes.push(null); // Ajout d'une entrée null pour la note correspondante
+      this.juryFirstName = ''; // Réinitialiser le champ de saisie
+    }
+  }
+
+  lockNotes() {
+    this.notesLocked = true; // Verrouillez les notes pour éviter toute modification ultérieure
+    const average = this.calculateAverage(); // Calculer la moyenne des notes
+    if (this.projectId && this.groupId) {
+      this.apiService.storeGroupAverage(this.projectId, this.groupId, average)
+      .subscribe(
+      (response) => {
+        console.log('Moyenne enregistrée avec succès:', response);
+        // Peut-être rediriger ou afficher un message de succès ici
+      },
+      (error) => {
+        console.error('Erreur lors de l\'enregistrement de la moyenne:', error);
+        // Gérer l'erreur ou afficher un message d'erreur ici
+      }
+    );
+    }
+
+  }
+
+
+  calculateAverage(): number {
+    let totalNotes = 0;
+    let validNotesCount = 0;
+
+    for (const note of this.juryNotes) {
+      if (note !== null) {
+        totalNotes += note;
+        validNotesCount++;
+      }
+    }
+
+    if (validNotesCount > 0) {
+      return totalNotes / validNotesCount;
+    } else {
+      return 0;
+    }
   }
 
 

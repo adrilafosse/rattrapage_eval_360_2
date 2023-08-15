@@ -86,6 +86,11 @@ export class ApiService {
     const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}/with_notes`;
     return this.http.get<any>(url);
   }
+  storeGroupAverage(projectId: string, groupId: string, average: number): Observable<any> {
+    const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}/store_group_average`;
+    const data = { average };
+    return this.http.post(url, data);
+  }
 
 
 }
