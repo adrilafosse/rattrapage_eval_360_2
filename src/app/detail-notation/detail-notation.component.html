@@ -1,1 +1,95 @@
-<p>detail-notation works!</p>
+<div *ngIf="groupData">
+  <div class="data-box">
+    <p><strong>Group Name:</strong> {{ groupData.group_name }}</p>
+    <p><strong>Group ID:</strong> {{ groupData.id }}</p>
+    <p><strong>Project ID:</strong> {{ projectId }}</p>
+  </div>
+
+  <h3>Students</h3>
+  <ul class="student-list">
+    <li *ngFor="let student of groupData.students" class="student-item">
+      <p><strong>Name:</strong> {{ student.name }}</p>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+      <p><strong>ID:</strong> {{ student.id }}</p>
+      <p><strong>Lastname:</strong> {{ student.lastname }}</p>
+      <p><strong>Notes:</strong></p>
+      <ul>
+        <li *ngFor="let note of student.notes">
+          <p><strong>Moyenne</strong> {{ note.value }}</p>
+          <p><strong>Skills:</strong> {{ note.student_info.skills }}</p>
+          <p><strong>Motivation:</strong> {{ note.student_info.motivation }}</p>
+          <p><strong>Communication:</strong> {{ note.student_info.communication }}</p>
+          <p><strong>results:</strong> {{ note.student_info.results }}</p>
+          <p><strong>Lastname:</strong> {{ note.student_info.lastname }}</p>
+          <p><strong>Prenom:</strong> {{ note.student_info.name }}</p>
+          <p><strong>id:</strong> {{ note.student_info.id }}</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h3>Comparison Results</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>Note Value</th>
+        <th>Skills</th>
+        <th>Motivation</th>
+        <th>Communication</th>
+        <th>Results</th>
+
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of comparisonResults">
+        <td>{{ result.studentId }}</td>
+        <td>{{ result.lastname }}</td>
+        <td>{{ result.name }}</td>
+
+        <td>{{ result.noteValue }}</td>
+        <td>{{ result.skills }}</td>
+        <td>{{ result.motivation }}</td>
+        <td>{{ result.communication }}</td>
+        <td>{{ result.results }}</td>
+
+
+
+
+      </tr>
+    </tbody>
+  </table>
+  <h3>Student Averages</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>Average</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let studentId of studentAverageKeys">
+      <td>{{ studentAverages[studentId].id }}</td>
+      <td>{{ studentAverages[studentId].lastname }}</td>
+      <td>{{ studentAverages[studentId].name }}</td>
+      <td>{{ studentAverages[studentId].average }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+</div>
+
+
+<div *ngIf="!groupData">
+  <p>Error fetching group data.</p>
+</div>

@@ -4,6 +4,7 @@
   <div class="data-box">
     <p><strong>Group Name:</strong> {{ groupData.group_name }}</p>
     <p><strong>Group ID:</strong> {{ groupData.id }}</p>
+    <p><strong>project id</strong> {{ projectId }}</p>
   </div>
 
   <h3>Students</h3>
@@ -16,6 +17,8 @@
       <a *ngIf="student.showLink" [routerLink]="student.uniqueLink">View Notation</a>
     </li>
   </ul>
+  <button [routerLink]="['/detail-notation', groupData.id, projectId]">Détail Notation</button>
+
 </div>
 
 <div *ngIf="!showStudentLinks">

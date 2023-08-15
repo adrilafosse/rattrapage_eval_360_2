@@ -82,7 +82,10 @@ export class ApiService {
     const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}/students/${studentId}/create_note`;
     return this.http.post(url, noteData);
   }
-
+  getGroupWithNotes(projectId: string, groupId: string): Observable<any> {
+    const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}/with_notes`;
+    return this.http.get<any>(url);
+  }
 
 
 }

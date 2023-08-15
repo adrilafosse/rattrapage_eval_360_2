@@ -8,6 +8,7 @@ import { ProjetComponent } from './projet/projet.component';
 
 import { DetailGroupComponent } from './detail-group/detail-group.component';
 import { NotationComponent } from './notation/notation.component';
+import { DetailNotationComponent } from './detail-notation/detail-notation.component';
 
 
 
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'projet/:id', component: ProjetComponent },
 
   { path: 'student/:projectId/:groupId/:studentId/:studentName/:studentLastName/notation', component: NotationComponent },
-
+  { path: 'detail-notation/:groupId/:projectId', component: DetailNotationComponent },
 
   { path: 'detailGroup/:projectId/:groupId', component: DetailGroupComponent },
 
