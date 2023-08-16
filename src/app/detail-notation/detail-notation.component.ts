@@ -17,7 +17,7 @@ export class DetailNotationComponent implements OnInit {
   receivedStudents: any[] = [];
   comparisonResults: any[] = [];
   studentAverages: { [studentId: string]: any } = {};
-
+  groupAverage: number | undefined;
   studentAverageKeys: string[] = [];
 
 
@@ -42,6 +42,17 @@ export class DetailNotationComponent implements OnInit {
 
             (error: any) => {
               console.error('Error fetching group data:', error);
+            }
+          );
+      }
+      if (this.groupId && this.projectId) {
+        this.apiService.getGroupAverage(this.projectId, this.groupId)
+          .subscribe(
+            (data: any) => {
+              this.groupAverage = data.average;
+            },
+            (error: any) => {
+              console.error('Error fetching group average:', error);
             }
           );
       }
@@ -102,6 +113,34 @@ export class DetailNotationComponent implements OnInit {
 
     // Construire le tableau de clés des moyennes d'étudiants
     this.studentAverageKeys = Object.keys(this.studentAverages);
+
+    for (const student of this.receivedStudents) {
+      const studentAverage = this.studentAverages[student.id]?.average || 0;
+      let combinedAverage: number = 0; // Assigner une valeur par défaut
+      let calculationDescription: string = ''; // Stocker la description du calcul
+
+      if (this.groupAverage !== undefined) {
+        // Calculer la moyenne combinée en tenant compte de la limite de perte maximale pour le groupe
+        const maxPossibleGroupAverage = this.groupAverage - 2;
+
+        if (maxPossibleGroupAverage > studentAverage) {
+          // Utiliser la moyenne du groupe moins 2 comme note finale
+          combinedAverage = maxPossibleGroupAverage;
+          calculationDescription = `Combined Average Calculation: Using Group Average - 2 (${maxPossibleGroupAverage})`;
+        } else {
+          // Utiliser la moyenne combinée des deux moyennes
+          combinedAverage = (studentAverage + this.groupAverage) / 2;
+          calculationDescription = `Combined Average Calculation: (${studentAverage} + ${this.groupAverage}) / 2 = ${combinedAverage}`;
+        }
+      }
+
+      student.combinedAverage = combinedAverage;
+      student.calculationDescription = calculationDescription;
+    }
+
+
+
+
 
     // Afficher le tableau des clés des moyennes dans la console
     console.log(this.studentAverageKeys);

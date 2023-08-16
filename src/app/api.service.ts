@@ -91,6 +91,10 @@ export class ApiService {
     const data = { average };
     return this.http.post(url, data);
   }
+  getGroupAverage(projectId: string, groupId: string): Observable<any> {
+    const url = `${this.apiUrl}/api/projects/${projectId}/groups/${groupId}/get_group_average`;
+    return this.http.get(url);
+  }
 
 
 }

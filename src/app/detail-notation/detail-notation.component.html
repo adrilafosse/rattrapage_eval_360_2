@@ -84,10 +84,22 @@
 </table>
 
 
-
+<h2>Group Details</h2>
+  <p>Group Average: {{ groupAverage }}</p>
 
 
 </div>
+<h2>Details</h2>
+<div *ngFor="let student of receivedStudents">
+  <p>Student: {{ student.name }} {{ student.lastname }}</p>
+  <p>Student Average: {{ studentAverages[student.id]?.average }}</p>
+  <p>Group Average: {{ groupAverage }}</p>
+
+  <p>Combined Average: {{ student.combinedAverage }}</p>
+</div>
+
+
+
 
 
 <div *ngIf="!groupData">
