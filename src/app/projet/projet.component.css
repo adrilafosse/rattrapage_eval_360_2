@@ -1,70 +1,52 @@
-/* styles.css */
-
+/* Styles pour la page de projet */
 .container {
-  text-align: center;
-  background-color: #f8f8f8;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .title {
-  font-size: 36px;
-  color: #333;
+  font-size: 32px;
+  text-align: center;
   margin-bottom: 20px;
-}
-
-.home-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.home-form input {
-  width: 70%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.home-form button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
 }
 
 .project-list {
-  list-style: none;
-  padding: 0;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0;
 }
 
-.project-list li {
-  margin: 10px 0;
+.project-list h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.project-list p {
+  margin: 5px 0;
 }
 
 .project-link {
-  display: inline-block;
   background-color: #007bff;
   color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.btn-import {
-  background-color: #084107;
-  color: white;
   padding: 10px 20px;
-  margin-left: 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.project-link:hover {
+  background-color: #0056b3;
+}
+
+.import-section {
   margin-top: 20px;
+  text-align: center;
 }
 
 .input-file {
@@ -78,9 +60,24 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .custom-input-file:hover {
   background-color: #0056b3;
 }
 
+.btn-import {
+  background-color: #084107;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-import:hover {
+  background-color: #052705;
+}
+
+/* ... (autres styles spécifiques) ... */
