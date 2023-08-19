@@ -26,6 +26,8 @@ export class ProjetComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.projectId = params.get('id') || '';
+      this.projectName = params.get('name') || '';
+
 
       this.apiService.getGroupsWithStudents(this.projectId)
         .subscribe(

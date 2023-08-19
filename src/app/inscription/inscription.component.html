@@ -1,24 +1,25 @@
-<h2>Inscription</h2>
+<div class="title-container">
+  <h2 class="title">Inscription</h2>
+</div>
 
-<form (submit)="createUser()">
+<form (submit)="createUser()" class="registration-form">
   <div>
-    <label for="firstName">First Name:</label>
+    <label for="firstName">Nom</label>
     <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
   </div>
 
   <div>
-    <label for="email">Email:</label>
+    <label for="email">Email</label>
     <input type="email" id="email" name="email" [(ngModel)]="email" required>
   </div>
 
   <div>
-    <label for="password">Password:</label>
+    <label for="password">Mot de passe</label>
     <input type="password" id="password" name="password" [(ngModel)]="password" required>
   </div>
 
   <div>
-    <button type="submit">Register</button>
-    <button (click)="allerVersConnexion()">Aller à Connexion</button>
-
+    <button type="submit" class="btn-register">Inscription</button>
+    <button (click)="allerVersConnexion()" class="btn-connexion">Connexion</button>
   </div>
 </form>

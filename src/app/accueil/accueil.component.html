@@ -1,11 +1,14 @@
-<!-- accueil.component.html -->
+<div class="container">
+  <h2 class="title">Bienvenue sur la page d'accueil</h2>
 
-<div>
-  <input type="text" [(ngModel)]="projectName" placeholder="Nom du projet">
-  <button (click)="onCreateProject()">Créer le projet</button>
+  <div class="home-form">
+    <input type="text" [(ngModel)]="projectName" placeholder="Nom du projet">
+    <button (click)="onCreateProject()">Créer le projet</button>
+  </div>
+
+  <ul class="project-list">
+    <li *ngFor="let project of projects">
+      <a [routerLink]="['/projet', project.id, project.name]" class="project-link">{{ project.name }}</a>
+    </li>
+  </ul>
 </div>
-<ul>
-  <li *ngFor="let project of projects">
-    <a [routerLink]="['/projet', project.id]">{{ project.name }}</a>
-  </li>
-</ul>

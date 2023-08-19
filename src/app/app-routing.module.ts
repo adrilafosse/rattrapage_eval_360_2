@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'accueil', component: AccueilComponent },
-  { path: 'projet/:id', component: ProjetComponent },
+  { path: 'projet/:id/:name', component: ProjetComponent },
 
   { path: 'student/:projectId/:groupId/:studentId/:studentName/:studentLastName/notation', component: NotationComponent },
   { path: 'detail-notation/:groupId/:projectId', component: DetailNotationComponent },
