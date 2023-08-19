@@ -1,10 +1,7 @@
 <div class="notation-container">
-  <h2>Notation Page</h2>
-  <p><strong>Project ID:</strong> {{ projectId }}</p>
-  <p><strong>Group ID:</strong> {{ groupId }}</p>
-  <p><strong>Student ID:</strong> {{ studentId }}</p>
-  <p><strong>Student Name:</strong> {{ studentName }}</p>
-  <p><strong>Student Lastname:</strong> {{ studentLastName }}</p>
+  <h2>Eval 360</h2>
+  <p><strong>{{ studentLastName }}    {{ studentName }}</strong> </p>
+
 
   <div *ngIf="!notesSubmitted">
     <table class="notation-table">
@@ -35,7 +32,7 @@
               [readonly]="notesSubmitted"
             />
             <div *ngIf="(student.results < 0 || student.results > 20)" class="error-message">
-              Note must be between 0 and 20
+              La note doit être comprise entre 0 et 20
             </div>
           </td>
           <td>
@@ -51,7 +48,7 @@
               [readonly]="notesSubmitted"
             />
             <div *ngIf="(student.skills < 0 || student.skills > 20)" class="error-message">
-              Note must be between 0 and 20
+              La note doit être comprise entre 0 et 20
             </div>
           </td>
           <td>
@@ -67,7 +64,7 @@
               [readonly]="notesSubmitted"
             />
             <div *ngIf="(student.motivation < 0 || student.motivation > 20)" class="error-message">
-              Note must be between 0 and 20
+              La note doit être comprise entre 0 et 20
             </div>
           </td>
           <td>
@@ -83,7 +80,7 @@
               [readonly]="notesSubmitted"
             />
             <div *ngIf="(student.communication < 0 || student.communication > 20)" class="error-message">
-              Note must be between 0 and 20
+              La note doit être comprise entre 0 et 20
             </div>
           </td>
         </tr>
@@ -91,7 +88,7 @@
     </table>
 
     <button (click)="validateNotes()" [disabled]="isButtonDisabled || notesSubmitted">Validate</button>
-    <div *ngIf="isButtonDisabled && !notesSubmitted" class="error-message">Please fill in all fields correctly.</div>
+    <div *ngIf="isButtonDisabled && !notesSubmitted" class="error-message">Remplissez les champs correctement</div>
   </div>
 
   <!-- Display notes after they have been submitted -->

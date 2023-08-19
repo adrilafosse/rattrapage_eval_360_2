@@ -1,44 +1,44 @@
 <div *ngIf="groupData">
   <div class="data-box">
-    <p><strong>Group Name:</strong> {{ groupData.group_name }}</p>
-    <p><strong>Group ID:</strong> {{ groupData.id }}</p>
-    <p><strong>Project ID:</strong> {{ projectId }}</p>
+    <p><strong>{{ groupData.group_name }}</strong> </p>
+
   </div>
 
-  <h3>Students</h3>
+  <h3>Etudiants</h3>
   <ul class="student-list">
     <li *ngFor="let student of groupData.students" class="student-item">
-      <p><strong>Name:</strong> {{ student.name }}</p>
+      <p><strong>Prénom</strong> {{ student.name }}</p>
+      <p><strong>Nom de famille</strong> {{ student.lastname }}</p>
       <p><strong>Email:</strong> {{ student.email }}</p>
-      <p><strong>ID:</strong> {{ student.id }}</p>
-      <p><strong>Lastname:</strong> {{ student.lastname }}</p>
-      <p><strong>Notes:</strong></p>
+
+
+      <p><strong>Notes donné par {{ student.name }} {{ student.lastname }}</strong></p>
       <ul>
         <li *ngFor="let note of student.notes">
-          <p><strong>Moyenne</strong> {{ note.value }}</p>
-          <p><strong>Skills:</strong> {{ note.student_info.skills }}</p>
-          <p><strong>Motivation:</strong> {{ note.student_info.motivation }}</p>
-          <p><strong>Communication:</strong> {{ note.student_info.communication }}</p>
-          <p><strong>results:</strong> {{ note.student_info.results }}</p>
-          <p><strong>Lastname:</strong> {{ note.student_info.lastname }}</p>
-          <p><strong>Prenom:</strong> {{ note.student_info.name }}</p>
-          <p><strong>id:</strong> {{ note.student_info.id }}</p>
+          <p><strong>Moyenne des notes</strong> {{ note.value }}</p>
+          <p><strong>Compétences : </strong> {{ note.student_info.skills }}</p>
+          <p><strong>Implic. - Motivation Efficacité : </strong> {{ note.student_info.motivation }}</p>
+          <p><strong>Communication (Ecrite, Orale, Partage des informations) : </strong> {{ note.student_info.communication }}</p>
+          <p><strong>Résultats /Objectifs : </strong> {{ note.student_info.results }}</p>
+          <p><strong>Nom de famille:</strong> {{ note.student_info.lastname }}</p>
+          <p><strong>Prénom:</strong> {{ note.student_info.name }}</p>
+
         </li>
       </ul>
     </li>
   </ul>
-  <h3>Comparison Results</h3>
+  <h3>Notes reçu</h3>
   <table>
     <thead>
       <tr>
-        <th>Student ID</th>
-        <th>Lastname</th>
-        <th>Firstname</th>
+
+        <th>Nom de famille</th>
+        <th>Prénom</th>
         <th>Note Value</th>
-        <th>Skills</th>
+        <th>Compétences</th>
         <th>Motivation</th>
         <th>Communication</th>
-        <th>Results</th>
+        <th>Résultats</th>
 
 
 
@@ -47,7 +47,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let result of comparisonResults">
-        <td>{{ result.studentId }}</td>
+
         <td>{{ result.lastname }}</td>
         <td>{{ result.name }}</td>
 
@@ -63,19 +63,19 @@
       </tr>
     </tbody>
   </table>
-  <h3>Student Averages</h3>
+  <h3>Moyenne par eleve</h3>
 <table>
   <thead>
     <tr>
-      <th>Student ID</th>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>Average</th>
+
+      <th>Nom de famille</th>
+      <th>Prénom</th>
+      <th>Moyenne</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let studentId of studentAverageKeys">
-      <td>{{ studentAverages[studentId].id }}</td>
+
       <td>{{ studentAverages[studentId].lastname }}</td>
       <td>{{ studentAverages[studentId].name }}</td>
       <td>{{ studentAverages[studentId].average }}</td>
@@ -84,18 +84,15 @@
 </table>
 
 
-<h2>Group Details</h2>
-  <p>Group Average: {{ groupAverage }}</p>
+<h2>Note du jury</h2>
+  <p>Note: {{ groupAverage }}</p>
 
 
 </div>
-<h2>Details</h2>
+<h2>Note final</h2>
 <div *ngFor="let student of receivedStudents">
-  <p>Student: {{ student.name }} {{ student.lastname }}</p>
-  <p>Student Average: {{ studentAverages[student.id]?.average }}</p>
-  <p>Group Average: {{ groupAverage }}</p>
+  <p>{{ student.name }} {{ student.lastname }} : {{ student.combinedAverage }}</p>
 
-  <p>Combined Average: {{ student.combinedAverage }}</p>
 </div>
 
 
