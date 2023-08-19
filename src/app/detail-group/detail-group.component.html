@@ -1,35 +1,36 @@
-<button (click)="generateStudentLinks()">Generate Student Links</button>
+
 
 <div *ngIf="showStudentLinks">
   <div class="data-box">
-    <p><strong>Group Name:</strong> {{ groupData.group_name }}</p>
-    <p><strong>Group ID:</strong> {{ groupData.id }}</p>
-    <p><strong>project id</strong> {{ projectId }}</p>
+    <p><strong></strong> {{ groupData.group_name }}</p>
+
   </div>
 
-  <h3>Students</h3>
+  <h3>Etudiants</h3>
   <ul class="student-list">
     <li *ngFor="let student of groupData.students" class="student-item">
-      <p><strong>Name:</strong> {{ student.name }}</p>
+      <p><strong>Prenom</strong> {{ student.name }}</p>
+      <p><strong>Nom de famille</strong> {{ student.lastname }}</p>
       <p><strong>Email:</strong> {{ student.email }}</p>
-      <p><strong>ID:</strong> {{ student.id }}</p>
-      <p><strong>Lastname:</strong> {{ student.lastname }}</p>
-      <a *ngIf="student.showLink" [routerLink]="student.uniqueLink">View Notation</a>
+
+
+      <a *ngIf="student.showLink" [routerLink]="student.uniqueLink">Notation</a>
     </li>
   </ul>
-  <button [routerLink]="['/detail-notation', groupData.id, projectId]">Détail Notation</button>
-
+  <button [routerLink]="['/detail-notation', groupData.id, projectId] "class="btn-detail">Détail Notation</button>
+  <button (click)="generateStudentLinks()" class="btn-link">Générer un lien</button>
+  <button (click)="showJuryNoteForm = !showJuryNoteForm" class="btn-jury-note">Note du Jury</button>
 </div>
-<button (click)="showJuryNoteForm = !showJuryNoteForm">Note du Jury</button>
 
-<div *ngIf="showJuryNoteForm">
-  <h3>Entrer les Prénoms des Membres du Jury</h3>
+
+<div *ngIf="showJuryNoteForm" class="jury-form">
+  <h3>Entrer les noms des Membres du Jury</h3>
   <input type="text" placeholder="Prénom" [(ngModel)]="juryFirstName">
   <button (click)="addJuryMember()">Ajouter Prénom</button>
 
   <ng-container *ngIf="juryMembers.length > 0">
-    <h3>Ajouter des Notes aux Membres du Jury</h3>
-    <ul>
+    <h3>Note du groupe</h3>
+    <ul class="jury-notes-list">
       <li *ngFor="let member of juryMembers; let i = index">
         {{ member }}
         <input type="number" [(ngModel)]="juryNotes[i]" placeholder="Note" [disabled]="notesLocked">
@@ -39,9 +40,9 @@
   </ng-container>
 </div>
 
-<div *ngIf="notesLocked">
+<div *ngIf="notesLocked" class="average-notes">
   <h3>Moyenne des Notes</h3>
-  <p>{{ calculateAverage() }}</p>
+  <p>{{ calculateAverage() }}/20</p>
 </div>
 
 

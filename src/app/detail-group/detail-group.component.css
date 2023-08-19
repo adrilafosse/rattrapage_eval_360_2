@@ -1,0 +1,122 @@
+/* Global Styles */
+
+/* ... (autres styles globaux) ... */
+
+/* Styles spécifiques pour la page des notations */
+.data-box {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.student-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.student-item {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+.btn-jury-note {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.btn-detail,
+.btn-link {
+  background-color: #084107;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px; /* Ajustez cet espacement comme nécessaire */
+}
+
+.btn-detail:hover,
+.btn-link:hover {
+  background-color: #0056b3;
+}
+.jury-form {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.jury-form h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.jury-form input[type="text"],
+.jury-form input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.jury-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.jury-form button:hover {
+  background-color: #0056b3;
+}
+
+.jury-notes-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.jury-notes-list li {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.average-notes {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.average-notes h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.average-notes p {
+  font-size: 16px;
+}
+
+
+
+
+
+
