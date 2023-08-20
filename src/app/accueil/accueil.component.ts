@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class AccueilComponent {
   projectName!: string;
   projects: any[] = [];
   clickedProjectId: string | null = null;
-  constructor(private router: Router, private apiService: ApiService) { }
+  userId!: string;
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   onCreateProject() {
     if (!this.projectName) {
@@ -34,19 +35,21 @@ export class AccueilComponent {
     );
   }
   ngOnInit(): void {
-    // Récupérer current_user_id (assurez-vous de le définir après la connexion)
-    const currentUserId = 'votre_current_user_id';
+    // Récupérer l'ID de l'utilisateur depuis les paramètres de l'URL
+    this.route.params.subscribe(params => {
+      this.userId = params['id'];
 
-    // Appeler la méthode pour récupérer les projets de l'utilisateur en passant l'ID de l'utilisateur
-    this.apiService.getProjects(currentUserId).subscribe(
-      (response) => {
-        // Récupérer les projets de la réponse
-        this.projects = response.projects;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des projets:', error);
-      }
-    );
+      // Appeler la méthode pour récupérer les projets de l'utilisateur en utilisant l'ID de l'utilisateur
+      this.apiService.getProjects(this.userId).subscribe(
+        (response) => {
+          // Récupérer les projets de la réponse
+          this.projects = response.projects;
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des projets:', error);
+        }
+      );
+    });
   }
 
 

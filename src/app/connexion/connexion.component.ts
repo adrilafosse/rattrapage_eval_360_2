@@ -24,8 +24,11 @@ export class ConnexionComponent {
     this.apiService.loginWithEmailAndPasword(this.email, this.password)
       .subscribe(
         (response) => {
+
           console.log('Login successful');
-          this.router.navigate(['/accueil']);
+          const id = response.user_id;
+          console.log(id);
+          this.router.navigate(['/accueil/', id]);
 
         },
         (error) => {

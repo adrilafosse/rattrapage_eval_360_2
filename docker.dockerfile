@@ -1,27 +1,18 @@
-# Utilisez une image de Node.js comme base
-FROM node:latest AS build
+FROM node:16 AS builder
 
-# Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copier le package.json et le package-lock.json pour installer les dépendances
 COPY package*.json ./
 RUN npm install
 
-# Copier le reste de l'application
 COPY . .
+RUN npm run build -- --configuration=production
 
-# Construire l'application Angular
-RUN npm run build --prod
-
-# Utiliser une image légère d'nginx pour servir l'application construite
 FROM nginx:alpine
 
-# Copier les fichiers de l'application construite dans le répertoire d'hébergement d'nginx
-COPY --from=build /app/dist/rattrapage /usr/share/nginx/html
+COPY default.conf /etc/nginx/conf.d/
 
-# Exposer le port 80 pour que l'application soit accessible depuis l'extérieur
-EXPOSE 80
+COPY --from=builder /app/dist/rattrapage /usr/share/nginx/html
 
-# Commande à exécuter lorsque le conteneur démarre
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]

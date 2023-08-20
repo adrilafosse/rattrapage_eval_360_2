@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/connexion', pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
-  { path: 'accueil', component: AccueilComponent },
+  { path: 'accueil/:id', component: AccueilComponent },
   { path: 'projet/:id/:name', component: ProjetComponent },
 
   { path: 'student/:projectId/:groupId/:studentId/:studentName/:studentLastName/notation', component: NotationComponent },

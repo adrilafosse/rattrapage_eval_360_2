@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  //private apiUrl = 'http://127.0.0.1:8080';
-  private apiUrl = 'https://my-api-service-utezoxe3yq-ew.a.run.app';
+  private apiUrl = 'http://127.0.0.1:8080';
+  //private apiUrl = 'https://my-api-service-utezoxe3yq-ew.a.run.app';
 
   constructor(private http: HttpClient) { }
 
