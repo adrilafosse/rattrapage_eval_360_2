@@ -18,7 +18,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copier les fichiers de l'application construite dans le répertoire d'hébergement d'nginx
-COPY --from=build /app/dist/your-angular-app /usr/share/nginx/html
+COPY --from=build /app/dist/rattrapage /usr/share/nginx/html
 
 # Exposer le port 80 pour que l'application soit accessible depuis l'extérieur
 EXPOSE 80
