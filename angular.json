@@ -63,7 +63,8 @@
               "browserTarget": "rattrapage:build:production"
             },
             "development": {
-              "browserTarget": "rattrapage:build:development"
+              "browserTarget": "rattrapage:build:development",
+              "port": 8080
             }
           },
           "defaultConfiguration": "development"
